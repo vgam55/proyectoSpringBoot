@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,8 +15,13 @@ import services.AnimalService;
 @RequestMapping("/animal")
 public class AnimalController {
 
+	@Autowired
 	private AnimalService animalService;
 	
+	public AnimalController(AnimalService animalService)
+	{
+		this.animalService=animalService;
+	}
 	@RequestMapping(value = "/all}", method = RequestMethod.GET)
 	public ArrayList<JSONObject> findAll()
 	{
